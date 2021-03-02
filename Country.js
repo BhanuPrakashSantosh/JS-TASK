@@ -13,7 +13,7 @@
 
 			
 			console.log("Total Response",y);
-            console.log("You are in "+y.city+", "+y.region);
+            console.log("You are in "+y.city+", "+y.region+","+y.country);
             getCountry(y.country);
 		}).catch( err=>{ 
 			console.error("error: ",err);
@@ -37,15 +37,15 @@ function showPosition(position) {
 
 
  	fetch ("https://restcountries.eu/rest/v2/name/"+country)
-		.then(x => x.json())
-		.then(z => {
-		    if (z.status >= 400) {
+		.then(d => d.json())
+		.then(e => {
+		    if (e.status >= 400) {
 				throw new Error("Someting went wrong");
 			}
-		    let [y]	= z;
+		    let [y]	= e;
 			console.log("Total Response",y);
 			let data=`<div class="card" style="width:400px">
-					  <img class="card-img-top" src="${y.flag}" alt="Card image">
+					  <img class="card-img-center" src="${y.flag}" alt="Card image">
 					  <div class="card-body">
 					    <h4 class="card-title">${y.name}</h4>
 					    
